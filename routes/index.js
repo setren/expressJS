@@ -1,9 +1,33 @@
-var express = require('express');
-var router = express.Router();
+const createError = require('http-errors');
+const fs = require('fs-extra')
+const path = require('path')
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const { checkAuth } = require('../helpers/index')
+const comments = require('../db/comments.json')
 
-module.exports = router;
+module.exports = function (app) {
+  app.get('/comments', (req, res) => {
+    res.send(comments);
+  });
+
+  app.post('/comments', checkAuth, (req, res) => {
+    console.log(req.body)
+    comments.push(req.body)
+    fs.writeJson(path.join(__dirname, '../db/comments.json'), comments)
+    res.json(comments)
+  });
+  app.put('/comments/:id', checkAuth, (req, res) => {
+    return res.send('Received a PUT HTTP method');
+  });
+  app.delete('/comments/:id', checkAuth, (req, res, next) => {
+    const index = comments.findIndex(v => v.id == req.params.id)
+    if (index > -1) {
+      comments.splice(index, 1)
+      fs.writeJson(path.join(__dirname, '../db/comments.json'), comments)
+      res.json("successful")
+    } else {
+      const err = createError(410, "Data tidak ditemukan!")
+      res.status(err.status).json(err.message)
+    }
+  });
+}
