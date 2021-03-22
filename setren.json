@@ -1,0 +1,68 @@
+{
+  "data": {
+    "users": [
+      {
+        "name": "satu",
+        "email": "satu@gmail.com",
+        "comment": "satu assalamualaikum",
+        "id": 1
+      },
+      {
+        "name": "dua",
+        "email": "dua@gmail.com",
+        "comment": "dua assalamualaikum",
+        "id": 2
+      },
+      {
+        "name": "tiga",
+        "email": "tiga@gmail.com",
+        "comment": "tiga assalamualaikum",
+        "id": 3
+      },
+      {
+        "name": "empat",
+        "email": "empat@gmail.com",
+        "comment": "empat assalamualaikum",
+        "id": 4
+      },
+      {
+        "name": "lima",
+        "email": "lima@gmail.com",
+        "comment": "lima assalamualaikum",
+        "id": 5
+      }
+    ],
+    "superusers": [
+      {
+        "name": "setren",
+        "email": "aisetren@gmail.com",
+        "id": 1
+      },
+      {
+        "name": "fazufi",
+        "email": "fazufi@gmail.com",
+        "id": 2
+      },
+      {
+        "name": "telobacm",
+        "email": "telobacm@gmail.com",
+        "id": 3
+      },
+      {
+        "name": "dafa",
+        "email": "dafaaldiy@gmail.com",
+        "id": 4
+      },
+      {
+        "name": "usamah abidullah",
+        "email": "usamah@gmail.com",
+        "id": 5
+      },
+      {
+        "name": "kaka",
+        "email": "kaka@gmail.com",
+        "id": 6
+      }
+    ]
+  }
+}

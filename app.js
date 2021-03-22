@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const setren = require('./setren')
 
 const app = express();
 
@@ -20,10 +21,8 @@ app.use(function (req, res, next) {
   res.removeHeader("X-Powered-By");
   next();
 });
-app.get('/comments', (req, res) => {
-  res.send('comments');
-});
 
+setren(app)
 indexRouter(app)
 app.use('/users', usersRouter);
 

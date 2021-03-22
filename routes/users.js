@@ -7,5 +7,6 @@ router.get('/', function (req, res, next) {
 });
 router.get('/comments', (req, res) => {
   res.send('comments')
+  console.log('users.js')
 })
 module.exports = router;
