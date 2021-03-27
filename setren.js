@@ -5,10 +5,25 @@ const createError = require('http-errors');
 
 
 module.exports = function (setren) {
+  setren.get('/', (req, res) => {
+    const data = db.data
+    res.send(data);
+  });
   setren.get('/:data', (req, res) => {
     const endpoint = req.params.data
     const data = db.data[endpoint]
     res.send(data);
+  });
+  setren.get('/:data/:id', (req, res) => {
+    const endpoint = req.params.data
+    const data = db.data[endpoint]
+    const index = data.findIndex(v => v.id == req.params.id)
+    if (index >= 0) {
+      res.send(data[index]);
+    } else {
+      const err = createError(404, "Data tidak ditemukan!")
+      res.status(err.status).json(err.message)
+    }
   });
   setren.post('/:data', (req, res) => {
     const endpoint = req.params.data
@@ -43,8 +58,8 @@ module.exports = function (setren) {
     const index = data.findIndex(v => v.id == req.params.id)
     console.log(index)
     if (index > -1) {
-      data.splice(index, 1)
-      data.push(req.body)
+      // data[index] = { ...data[index], ...req.body };
+      data[index] = Object.assign(data[index], req.body)
       fs.writeJson(path.join(__dirname, './setren.json'), db)
       res.json("successful")
     } else {
